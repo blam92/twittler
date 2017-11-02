@@ -58,21 +58,24 @@ function filterByUser(tweets, user) {
 $(document).ready(function() {
   var $loadMoreButton = $('.load_twits');
   loadTweets(streams.home, $loadMoreButton, streams.home.length);
-
+  //cambiar loadmorebuttons como parametro y poner $('body')
   $loadMoreButton.on('click', function() {
     var lastTweet = $('.scrollme').first()
     loadTweets(streams.home, lastTweet, 10);
+    scrollme.init();
   });
 
-  $('.twit-user').on('click', function() {
+  $('body').on('click', '.twit-user', function() {
     $('body').children('div').html('');
     var selectedUserTweets = filterByUser(streams.home, $(this).text().slice(1));
     loadTweets(selectedUserTweets, $loadMoreButton, selectedUserTweets.length);
+    scrollme.init();
   });
 
   $('.title').on('click', function() {
     $('body').children('div').html('');
     loadTweets(streams.home, $loadMoreButton, streams.home.length);
+    scrollme.init();
   });
 
 });

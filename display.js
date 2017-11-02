@@ -16,7 +16,7 @@ var colorSelector = {
     }  
   },
   lastColor : undefined,
-  colorCodes : ['#2AAFE5', '#AD157A', '#EE8D0C', '#E50914', '#00A0DF', '#F26522', '#1AA19D', '#E7308A']
+  colorCodes : ['#C62828', '#827717', '#0277BD', '#00838F', '#1B5E20', '#455A64', '#F4511E', '#757575'],
 }
 
 function getImg() {
@@ -46,6 +46,7 @@ function loadTweets(tweets, elementAfterTwitsAreInserted, numberOfTwitsToLoad) {
     $tweet.insertBefore(elementAfterTwitsAreInserted);
     index -= 1;
   }
+  scrollme.init();
 }
 
 function filterByUser(tweets, user) {
@@ -56,28 +57,25 @@ function filterByUser(tweets, user) {
 }
 
 $(document).ready(function() {
+  console.log(streams);
   var $loadMoreButton = $('.load_twits');
   loadTweets(streams.home, $loadMoreButton, streams.home.length);
-  //cambiar loadmorebuttons como parametro y poner $('body')
   $loadMoreButton.on('click', function() {
     var lastTweet = $('.scrollme').first()
     loadTweets(streams.home, lastTweet, 10);
-    scrollme.init();
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
   });
 
   $('body').on('click', '.twit-user', function() {
     $('body').children('div').html('');
     var selectedUserTweets = filterByUser(streams.home, $(this).text().slice(1));
     loadTweets(selectedUserTweets, $loadMoreButton, selectedUserTweets.length);
-    scrollme.init();
   });
 
   $('.title').on('click', function() {
     $('body').children('div').html('');
     loadTweets(streams.home, $loadMoreButton, streams.home.length);
-    scrollme.init();
   });
 
 });
-
 

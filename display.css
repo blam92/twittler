@@ -6,7 +6,7 @@ html, body {
 }
 
 .twit {
-	color: white;
+	color: #FFFFFF;
     margin: 50px;
 	padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -23,7 +23,7 @@ html, body {
 	margin-left: 10px;
 	margin-top: 20px;
     cursor: pointer;
-    color: blue;
+    color: #F2F2F2;
 
 /*h1 style*/
     display: block;
@@ -43,12 +43,19 @@ html, body {
 	margin-left: 5px;
 }
 
+
+/* img */
+.horizontal {
+    display: flex;
+}
+
 .profile_icon {
 	height:6%;
 	width:6%;
 }
 
-ul {
+/* navbar */
+.nav-ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -60,7 +67,7 @@ ul {
     z-index: 9;
 }
 
-li {
+.nav-li {
     float: center;
 }
 
@@ -72,18 +79,14 @@ li a {
     text-decoration: none;
 }
 
-li a:hover:not(.active) {
+li a:hover {
     background-color: #111;
 }
 
-.active {
-    background-color: #4CAF50;
-}
 
-.horizontal {
-	display: flex;
-}
 
+
+/* button */
 button {
 	position: fixed;
     bottom: 0px;
@@ -113,8 +116,8 @@ button {
 .footer_block {
     padding: 2% 1.5em;
     transform-origin: center bottom;
-    background: #606060;
-    color: #b0b0b0;
+    background-color: #455A64;
+    color: #FFFFFF;
 }
 
 .hr {
@@ -122,6 +125,17 @@ button {
     width: 12%;
 }
 
+/*profile section*/
+section {
+    text-align: center;
+    background-size: cover;
+    padding: 30px;
+    background-color: #00ACC1;
+}
+.timeline_profile_icon {
+    padding-top: 20px;
+    filter: initial;
+}
 
 
 

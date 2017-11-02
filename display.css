@@ -1,6 +1,7 @@
 html, body {
 	margin: 0px;
 	padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .twit {
@@ -37,6 +38,7 @@ ul {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 9;
 }
 
 li {

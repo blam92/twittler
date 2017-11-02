@@ -19,10 +19,11 @@ var colorSelector = {
   colorCodes : ['#C62828', '#827717', '#0277BD', '#00838F', '#1B5E20', '#455A64', '#F4511E', '#757575'],
 }
 
-function getImg() {
+function getImg(username) {
   var random = getRandomInt(0,2);
 
-  if(random === 0) {
+
+  if(streams.users[username].sex) {
     return 'man-pic.png';
   } else {
     return 'woman-pic.png';
@@ -38,7 +39,7 @@ function loadTweets(tweets, elementAfterTwitsAreInserted, numberOfTwitsToLoad) {
       <div class="twit" style="background-color:' + twitColor + '">\
       <p class="twit-date">' + tweet.created_at +'</p>\
       <div class="horizontal">\
-        <img src="' + getImg() + '" class="profile_icon"></img>\
+        <img src="' + getImg(tweet.user) + '" class="profile_icon"></img>\
         <a class="twit-user">@' + tweet.user +'</a>\
       </div>\
       <p class="twit-content">' + tweet.message +'</p>\

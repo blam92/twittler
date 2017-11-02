@@ -3,27 +3,40 @@
  * You can safely leave this file untouched, and confine your changes to index.html.
  */
 
+// utility function
+var randomElement = function(array){
+  var randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+};
+
 // set up data structures
 window.streams = {};
 streams.home = [];
 streams.users = {};
-streams.users.shawndrost = [];
-streams.users.sharksforcheap = [];
-streams.users.mracus = [];
-streams.users.douglascalhoun = [];
+streams.users.shawndrost = {
+  tweets : [],
+  sex : randomElement([0,1])
+};
+streams.users.sharksforcheap = {
+  tweets : [],
+  sex : randomElement([0,1])
+};
+streams.users.mracus = {
+  tweets : [],
+  sex : randomElement([0,1])
+};
+streams.users.douglascalhoun = {
+  tweets : [],
+  sex : randomElement([0,1])
+};
+
 window.users = Object.keys(streams.users);
 
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
   var username = newTweet.user;
-  streams.users[username].push(newTweet);
+  streams.users[username].tweets.push(newTweet);
   streams.home.push(newTweet);
-};
-
-// utility function
-var randomElement = function(array){
-  var randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
 };
 
 // random tweet generator

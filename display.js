@@ -9,10 +9,8 @@ var colorSelector = {
     var randomIndex = getRandomInt(0, this.colorCodes.length);
 
     if(this.colorCodes[randomIndex] === this.lastColor) {
-      console.log(this.getColor());
       return this.getColor();
     } else {
-      console.log(this.colorCodes[randomIndex]);
       this.lastColor = this.colorCodes[randomIndex];
       return this.colorCodes[randomIndex];
     }  
@@ -31,11 +29,10 @@ function getImg() {
   }
 }
 
-$(document).ready(function(){
-  var $loadMoreButton = $('.load_twits');
+function loadTweets(tweets, elementAfterTwitsAreInserted, numberOfTwitsToLoad) {
   var index = streams.home.length - 1;
-  while(index >= 0) {
-    var tweet = streams.home[index];
+  while(index >= (tweets.length - numberOfTwitsToLoad)) {
+    var tweet = tweets[index];
 
     var $tweet = $('<div class="scrollme animateme" data-when="enter" data-from="0.5" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" style="opacity: 1; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);"><div class="twit">\
       <p class="twit-date">' + tweet.created_at +'</p>\
@@ -48,9 +45,19 @@ $(document).ready(function(){
 
     twitColor = colorSelector.getColor();
     $tweet.css('background-color', twitColor);
-    $tweet.insertBefore($loadMoreButton);
+    $tweet.insertBefore(elementAfterTwitsAreInserted);
     index -= 1;
   }
+}
+
+$(document).ready(function() {
+  var $loadMoreButton = $('.load_twits');
+  loadTweets(streams.home, $loadMoreButton, streams.home.length);
+
+  $loadMoreButton.on('click', function() {
+    var lastTweet = $('.scrollme').first()
+    loadTweets(streams.home, lastTweet, 10);
+  });
 });
 
 

@@ -1,20 +1,24 @@
-var colorCodes = ['#2AAFE5', '#AD157A', '#EE8D0C', '#E50914', '#00A0DF', '#F26522', '#1AA19D', '#E7308A'];
-var lastColor;
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-function getColor(colorArray, lastRandomColor) {
-  var randomIndex = getRandomInt(0, colorCodes.length);
+var colorSelector = {
+  getColor : function() {
+    var randomIndex = getRandomInt(0, this.colorCodes.length);
 
-  if(colorArray[randomIndex] === lastRandomColor) {
-    return getColor(colorArray, lastRandomColor);
-  } else {
-    return colorArray[randomIndex];
-  }  
+    if(this.colorCodes[randomIndex] === this.lastColor) {
+      console.log(this.getColor());
+      return this.getColor();
+    } else {
+      console.log(this.colorCodes[randomIndex]);
+      this.lastColor = this.colorCodes[randomIndex];
+      return this.colorCodes[randomIndex];
+    }  
+  },
+  lastColor : undefined,
+  colorCodes : ['#2AAFE5', '#AD157A', '#EE8D0C', '#E50914', '#00A0DF', '#F26522', '#1AA19D', '#E7308A']
 }
 
 function getImg() {
@@ -42,9 +46,8 @@ $(document).ready(function(){
       <p class="twit-content">' + tweet.message +'</p>\
     </div></div>');
 
-    twitColor = getColor(colorCodes, lastColor);
+    twitColor = colorSelector.getColor();
     $tweet.css('background-color', twitColor);
-    lastColor = twitColor;
     $tweet.insertBefore($loadMoreButton);
     index -= 1;
   }

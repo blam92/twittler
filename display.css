@@ -95,7 +95,17 @@ button {
     margin-bottom: 30px;
     width: 100px;
     height: 50px;
-    z-index: 9; 
+    z-index: 9;
+}
+
+.load_twits {
+  background: #333;
+  width: 150px;
+  padding: 4px 0;
+  border-radius: 3px;
+  border: black;
+  color: white;
+  font-size: 13px;
 }
 
 

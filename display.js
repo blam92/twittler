@@ -50,6 +50,35 @@ function loadTweets(tweets, elementAfterTwitsAreInserted, numberOfTwitsToLoad) {
   scrollme.init();
 }
 
+function loadUserTweets(tweets) {
+  var index = tweets.length - 1;
+  var $profileHeader = $('<section>\
+<img src="' + getImg(tweets[0].user) +'" class="profile_icon timeline_profile_icon"></img>\
+<h2>@' + tweets[0].user +'</h2>\
+<ul class="ul_user_info">\
+<li class="user_info">Number Of Tweets: ' + tweets.length + '</li>\
+<li class="user_info">Following: ' + getRandomInt(100, 700) +'</li>\
+</ul></section>');
+  $profileHeader.insertBefore('.footer');
+  while(index >= 0) {
+    var tweet = tweets[index];
+    var twitColor = "#8BC34A";
+    var $tweet = $('<div class="scrollme animateme" data-when="enter" data-from="0.5" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" style="opacity: 1; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);">\
+<div class="twit" style="background-color:' + twitColor + '">\
+<p class="twit-date">' + tweet.created_at +'</p>\
+<div class="horizontal">\
+</div>\
+<p class="twit-content">' + tweet.message +'</p>\
+</div>\
+</div>');
+    $tweet.css('margin-left', '25%');
+    $tweet.css('margin-right', '25%');
+    $tweet.insertAfter('section');
+    index -= 1;
+  }
+  scrollme.init();
+}
+
 function filterByUser(tweets, user) {
   //user should be without @
   return tweets.filter(function(item) {
@@ -68,13 +97,17 @@ $(document).ready(function() {
   });
 
   $('body').on('click', '.twit-user', function() {
-    $('body').children('div').html('');
+    $('body').children('div').remove();
     var selectedUserTweets = filterByUser(streams.home, $(this).text().slice(1));
-    loadTweets(selectedUserTweets, $loadMoreButton, selectedUserTweets.length);
+    //loadTweets(selectedUserTweets, $loadMoreButton, selectedUserTweets.length);
+    loadUserTweets(selectedUserTweets);
+    $('button').hide();
   });
 
   $('.title').on('click', function() {
-    $('body').children('div').html('');
+    $('body').children('div').remove();
+    $('body').children('section').remove();
+    $('button').show();
     loadTweets(streams.home, $loadMoreButton, streams.home.length);
   });
 

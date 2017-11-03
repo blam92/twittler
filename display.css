@@ -130,11 +130,20 @@ section {
     text-align: center;
     background-size: cover;
     padding: 30px;
-    background-color: #00ACC1;
+    background-color: #1976D2;
+    color: white;
 }
 .timeline_profile_icon {
     padding-top: 20px;
     filter: initial;
+}
+
+.user_info {
+    padding: 5px;
+    list-style-type: none;
+}
+.ul_user_info {
+    padding: 0px;
 }
 
 
